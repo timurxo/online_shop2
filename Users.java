@@ -6,13 +6,13 @@ import java.util.Scanner;
 // GETS ID AND PASSWORD AND ID FROM USER AND CHECKS IF THEY ARE CORRECT
 public class Users {
 	
-}
+
     private ArrayList<User> registeredUsers = new ArrayList<>();
     private Session session;
     
     public Users(Session ses) {
-        registeredUsers.add(new User(userId, pass, name, address, phone_number, "customer"));
-        registeredUsers.add(new User(userId, pass, name, address, phone_number, "supplier"));
+        registeredUsers.add(new User(username, password, name, address, phone_number, "customer"));
+        registeredUsers.add(new User(username, password, name, address, phone_number, "supplier"));
         session = ses;
     }
     
@@ -108,11 +108,11 @@ public class Users {
     		
             // Ask for ID
             System.out.println("Enter your ID: ");
-            String userId = sc.nextLine(); 
+            String username = sc.nextLine(); 
 
             // Ask for password
             System.out.println("Enter your password: ");
-            String pass = sc.nextLine();  
+            String password = sc.nextLine();  
             
             // Ask for name
             System.out.println("Enter your name: ");
@@ -134,7 +134,7 @@ public class Users {
             // When all required information is taken
             System.out.println("An account has been created!");
 
-        }
+        }}
         	
         
         
