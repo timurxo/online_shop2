@@ -1,10 +1,22 @@
 package final_project;
 
+import java.util.Scanner;
+
 public class EntryPoint {
-    private Session session;
-    public void main(String[] args) {
-        // get session type (customer or supplier)
-        session = Session.startCustomerSession(new Cart());
+    private static Session session;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to the OSS. \nAre you a customer or supplier? Type in the number 1 for customer, or 2 for supplier.");
+        int custSup = sc.nextInt();
+        if (custSup == 1) {
+            System.out.println("You have chosen Customer. Welcome.");
+            session = Session.startCustomerSession(new Cart());
+        } else if (custSup == 2) {
+            System.out.println("You have chosen Supplier. Welcome.");
+            session = Session.startSupplierSession();
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
 
         // get task
         String task = "login";
@@ -15,7 +27,7 @@ public class EntryPoint {
             handleSupplier(task);
         }
     }
-    public void handleCustomer(String task) {
+    public static void handleCustomer(String task) {
         switch (task) {
             case "login":
                 session.getUserList().doLogin();
@@ -40,7 +52,7 @@ public class EntryPoint {
                 // no matching action
         }
     }
-    public void handleSupplier(String task) {
+    public static void handleSupplier(String task) {
         // handle
     }
 }
