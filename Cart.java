@@ -1,31 +1,38 @@
-package final_project;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+// CATALOG
 
 public class Cart {
     private ArrayList<Item> availableProducts;
     private ArrayList<Item> cartItems;
+
+
     public Cart() {
         availableProducts.add(new Item("TV", 1700));
-        availableProducts.add(new Item("PS4", 1700));
-        availableProducts.add(new Item("Xbox", 1700));
+        availableProducts.add(new Item("PS4", 399));
+        availableProducts.add(new Item("Xbox", 299));
     }
+
+
     public Order checkout() throws UnauthorizedException {
         User user = Session.getInstance().getUser();
         Bank bank = new Bank();
         Boolean verified = bank.verifyCard(user.getCard(), getCartTotal());
+
+        // if information is incorrect
         if (!verified) {
             throw new UnauthorizedException();
-        } else {
-            Order order = new Order(
-                user.getId(),
-                cartItems,
-                getCartTotal()
-            );
+        } else // if everything is verified
+            {
+            Order order = new Order(user.getId(), cartItems, getCartTotal());
             return order;
         }
     }
+
+
+
+
     public void addItemsToCart() {
         Scanner sc = new Scanner(System.in);
 
@@ -40,12 +47,6 @@ public class Cart {
         cartItems.add(availableProducts.get(choice));
 
 
-        // if no choice is made
-        // if (choice.isEmpty()) {
-        //     System.out.println("Please make a selection: ");
-        //     String ch = sc.nextLine();
-        //     items.add(ch);
-        // }
 
         // keep asking for selection of other items
         while (true) {
@@ -58,19 +59,30 @@ public class Cart {
                 choice = sc.nextInt();
                 cartItems.add(availableProducts.get(choice));
             } else if (yn.equals("no")) {
-	        	    // if (items.equals("1"))
-	        		  //     items = ite;
+
 
                 System.out.println("You've chosen: " + cartItems);
                 break;
             }
         }
     }
+
+
+
     public ArrayList<Item> getCart() {
         return cartItems;
     }
+    
     public Integer getCartTotal() {
+        
+        
+        // verifyCard(int card, int price)
+        // 
         Integer total = 0;
+        
+	    // if the amount on card is exceeded
+     //   if (verifyCard(88, 445))
+        
         for (Item cartItem : cartItems) {
             total += cartItem.getPrice();
         }
