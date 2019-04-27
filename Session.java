@@ -17,7 +17,7 @@ public class Session {
         instance = new Session("customer", cartObject);
         return instance;
     }
-    public static Session startSupplierSession(Users users) {
+    public static Session startSupplierSession() {
         instance = new Session("supplier", null);
         return instance;
     }
