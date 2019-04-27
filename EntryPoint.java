@@ -1,5 +1,6 @@
 package final_project;
 
+
 /*
 customer cases:
 1a. login - needs to be setup with input handling, function in Users class
@@ -70,7 +71,7 @@ public class EntryPoint {
             System.out.println("In customer task.");
             handleCustomer(task);
         } else {
-            System.out.println("In customer task.");
+            System.out.println("In supplier task.");
             handleSupplier(task);
         }
     }
@@ -100,7 +101,17 @@ public class EntryPoint {
         }
     }
     public static void handleSupplier(String task) {
-        // handle
+        switch (task) {
+            case "login":
+                break;
+            case "logout":
+                break;
+            case "inventory":
+                break;
+            case "orders":
+                break;
+            default:
+                //yes
+        }
     }
 }
-
