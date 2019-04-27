@@ -6,7 +6,6 @@ import java.util.Scanner;
 // GETS ID AND PASSWORD AND ID FROM USER AND CHECKS IF THEY ARE CORRECT
 public class Users {
 	
-
     private ArrayList<User> registeredUsers = new ArrayList<>();
     private Session session;
     
@@ -82,8 +81,8 @@ public class Users {
         	// ask to enter id again
         	do { 
         		System.out.println("Enter ID again: ");
-                String userId = sc.nextLine(); 
-        	} while (!(user.getId().equals(username)));
+                String username = sc.nextLine(); 
+        	} while (!(user.getId().equals(userId)));
         	
         	// wrong password
         } catch (BadPasswordException e) {
@@ -91,8 +90,8 @@ public class Users {
         	// ask to try again
         	do {
             System.out.println("Wrong password. Try again");
-            String pass = sc.nextLine(); 
-        	} while (!(user.getPass().equals(password)));
+            String password = sc.nextLine(); 
+        	} while (!(user.getPass().equals(pass)));
             
         if (user == null) {
             System.out.println("Enter info");
@@ -134,7 +133,10 @@ public class Users {
             // When all required information is taken
             System.out.println("An account has been created!");
 
-        }}
+        }
+       
+    
+    }
         	
         
         
