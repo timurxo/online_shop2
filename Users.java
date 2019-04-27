@@ -83,7 +83,7 @@ public class Users {
         	do { 
         		System.out.println("Enter ID again: ");
                 String userId = sc.nextLine(); 
-        	} while !(user.getId().equals(username))
+        	} while (!(user.getId().equals(username)));
         	
         	// wrong password
         } catch (BadPasswordException e) {
@@ -92,7 +92,7 @@ public class Users {
         	do {
             System.out.println("Wrong password. Try again");
             String pass = sc.nextLine(); 
-        	} while !(user.getPass().equals(password))
+        	} while (!(user.getPass().equals(password)));
             
         if (user == null) {
             System.out.println("Enter info");
