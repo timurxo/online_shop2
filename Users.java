@@ -78,15 +78,17 @@ public class Users {
             String newAddress = sc.nextLine();
             System.out.println("Give us your credit card number: ");
             int newCreditCard = sc.nextLine();
-            newType = "customer";
-            //do login            
+            String newType = "customer";
+            createUser(newUsername, newPassword, newPhoneWhoDis, newAddress, newCreditCard, newType);
+            System.out.println("You have successfully created your account! Congrats! Now please proceed to login.");
+            doLogin();       
         }
 
     }
     public void doLogout() {
         session.setUser(null);
     }
-    public void createUser(String newUsername, String newPassword, int newPhoneWhoDis, String newAddress, int newCreditCard) {
-        Session.getInstance().getUserList().addUser(new User(newUsername, newPassword, newPhoneWhoDis, newAddress, newCreditCard));
+    public void createUser(String newUsername, String newPassword, int newPhoneWhoDis, String newAddress, int newCreditCard, String newType) {
+        Session.getInstance().getUserList().addUser(new User(newUsername, newPassword, newPhoneWhoDis, newAddress, newCreditCard, newType));
     }
 }
