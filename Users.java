@@ -50,8 +50,11 @@ public class Users {
                 userList.authUser(user, pass);
                 System.out.println("Successfully logged in! Welcome to the OSS.");
             } catch (NotFoundException e) {
-                System.out.println("In user not found exception. ");
-                // user not found do some looping or something here
+                sc.nextLine();
+                while (!(user.getUserId().equals())) {
+                    System.out.println("The username did not match. Please try again: ");
+                    userId = sc.nextLine();
+                }                
             } catch (BadPasswordException e) {
                 sc.nextLine();
                 while (!(user.getPass().equals(pass))) {
