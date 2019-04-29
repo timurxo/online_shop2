@@ -112,6 +112,16 @@ public class Users
             System.out.println("Enter a username: ");
             sc.nextLine();
             String newUsername = sc.nextLine();
+	    boolean usernameTaken = true;
+            while(usernameTaken) {
+                try {
+                    getUserById(newUsername);
+                    System.out.println("Username already exists. Enter in a different username: ");
+                    newUsername = sc.nextLine();
+                } catch (NotFoundException e) {
+                    usernameTaken = false;
+                }
+            }
             System.out.println("Create a password for your account: ");
             String newPassword = sc.nextLine();
             System.out.println("Please tell us your telephone number: ");
