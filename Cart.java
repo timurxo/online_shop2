@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 // CATALOG
 
+// select items
+// place order
+
 public class Cart {
     private ArrayList<Item> availableProducts;
     private ArrayList<Item> cartItems;
@@ -15,15 +18,20 @@ public class Cart {
     }
 
 
+    // INTERACTION WITH BANK REGARDING VERIFICATION OF OPERATION
     public Order checkout() throws UnauthorizedException {
+
         User user = Session.getInstance().getUser();
         Bank bank = new Bank();
         Boolean verified = bank.verifyCard(user.getCard(), getCartTotal());
 
-        // if information is incorrect
+        // IF NOT VERIFIED BY BANK
         if (!verified) {
             throw new UnauthorizedException();
-        } else // if everything is verified
+        }
+
+        // IF VERIFIED BY BANK -> create order
+        else
             {
             Order order = new Order(user.getId(), cartItems, getCartTotal());
             return order;
@@ -32,7 +40,7 @@ public class Cart {
 
 
 
-
+    // USER SELECTS ITEMS AND ADDS THEM TO CART
     public void addItemsToCart() {
         Scanner sc = new Scanner(System.in);
 
@@ -58,9 +66,8 @@ public class Cart {
                 System.out.println("Select an item by entering it's number ");
                 choice = sc.nextInt();
                 cartItems.add(availableProducts.get(choice));
+
             } else if (yn.equals("no")) {
-
-
                 System.out.println("You've chosen: " + cartItems);
                 break;
             }
@@ -72,20 +79,16 @@ public class Cart {
     public ArrayList<Item> getCart() {
         return cartItems;
     }
-    
+
+
     public Integer getCartTotal() {
-        
-        
-        // verifyCard(int card, int price)
-        // 
+
         Integer total = 0;
-        
-	    // if the amount on card is exceeded
-     //   if (verifyCard(88, 445))
-        
-        for (Item cartItem : cartItems) {
-            total += cartItem.getPrice();
-        }
-        return total;
+
+           for (Item cartItem : cartItems) {
+               total += cartItem.getPrice();
+           }
+           return total;
+
     }
 }

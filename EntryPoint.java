@@ -1,14 +1,14 @@
-package final_project;
-
-
 /*
 customer cases:
 1a. login - needs to be setup with input handling, function in Users class
 1b. create - needs to be setup
 2. logout - need to be setup with input handling, function in Users class
+
 3. select items - should be mostly same, function in Cart class. Has some of the input handling that someone else wrote
-4. place order - there's a checkout function in Cart class. interacts with the bank lol
+4. place order - there's a checkout function in Cart class. interacts with the bank
+
 5. view order - should just need a listOrders and getOrder function
+
 supplier cases
 1. process order
 2. confirm
@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class EntryPoint {
     private static Session session;
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         boolean begin = true;
         while(begin) {
@@ -71,7 +72,7 @@ public class EntryPoint {
             System.out.println("In customer task.");
             handleCustomer(task);
         } else {
-            System.out.println("In supplier task.");
+            System.out.println("In customer task.");
             handleSupplier(task);
         }
     }
@@ -100,18 +101,10 @@ public class EntryPoint {
                 // no matching action
         }
     }
+
+
     public static void handleSupplier(String task) {
-        switch (task) {
-            case "login":
-                break;
-            case "logout":
-                break;
-            case "inventory":
-                break;
-            case "orders":
-                break;
-            default:
-                //yes
-        }
+        // handle
     }
 }
+

@@ -1,7 +1,6 @@
-package final_project;
-
 
 public class Session {
+
     private static Session instance = null;
     private User user;
     private String sessionType;
@@ -12,14 +11,18 @@ public class Session {
         cart = cartObject;
         userList = new Users(this);
     }
+
+
     public static Session startCustomerSession(Cart cartObject) {
         instance = new Session("customer", cartObject);
         return instance;
     }
+
     public static Session startSupplierSession() {
         instance = new Session("supplier", null);
         return instance;
     }
+
     public static Session getInstance() {
         return instance;
     }
@@ -32,12 +35,14 @@ public class Session {
     public Cart getCart() {
         return cart;
     }
+
     public String getSessionType() {
         return sessionType;
     }
     public Boolean isLoggedIn() {
         return user == null;
     }
+
     public Users getUserList() {
         return userList;
     }

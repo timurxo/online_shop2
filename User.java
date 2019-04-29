@@ -1,5 +1,3 @@
-package final_project;
-
 public class User {
     private String id;
     private String pass;
@@ -7,6 +5,7 @@ public class User {
     private String phone;
     private Integer card;
     private String type;
+
     public User(String username, String password, String tel, String add, Integer cc, String typ) {
         id = username;
         pass = password;
@@ -14,6 +13,7 @@ public class User {
     public String getId() {
         return id;
     }
+
     public String getPass() {
         return pass;
     }

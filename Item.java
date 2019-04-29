@@ -1,6 +1,7 @@
-package final_project;
-
 public class Item {
+
+    // GET NAME AND PRICE OF AN ITEM
+
     private String name;
     private Integer price;
     public Item(String productName, Integer productPrice) {
