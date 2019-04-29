@@ -69,11 +69,24 @@ public class Users {
             session.setUser(user);
         } else {
             System.out.println("Please create your account. Choose your username: ");
-            //do create account
+            String newUsername = sc.nextLine();
+            System.out.println("Create a password for your account: ");
+            String newPassword = sc.nextLine();
+            System.out.println("Please tell us your telephone number: ");
+            int newPhoneWhoDis = sc.nextLine();
+            System.out.println("Please tell us your address: ");
+            String newAddress = sc.nextLine();
+            System.out.println("Give us your credit card number: ");
+            int newCreditCard = sc.nextLine();
+            newType = "customer";
+            //do login            
         }
 
     }
     public void doLogout() {
         session.setUser(null);
+    }
+    public void createUser(String newUsername, String newPassword, int newPhoneWhoDis, String newAddress, int newCreditCard) {
+        Session.getInstance().getUserList().addUser(new User(newUsername, newPassword, newPhoneWhoDis, newAddress, newCreditCard));
     }
 }
