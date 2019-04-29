@@ -15,6 +15,13 @@ public class Cart {
         availableProducts.add(new Item("TV", 1700));
         availableProducts.add(new Item("PS4", 399));
         availableProducts.add(new Item("Xbox", 299));
+        availableProducts.add(new Item("Witcher 3", 59));
+        availableProducts.add(new Item("Red Dead Redemption", 49));
+        availableProducts.add(new Item("Black Ops", 59));
+        availableProducts.add(new Item("Pre-Build Desktop computer", 2000));
+        availableProducts.add(new Item("Keyboard", 35));
+        availableProducts.add(new Item("Mouse", 25));
+        availableProducts.add(new Item("1440p Monitor", 300));
     }
 
 
