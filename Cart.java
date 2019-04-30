@@ -77,6 +77,12 @@ public class Cart {
             } else if (yn.equals("no")) {
                 System.out.println("You've chosen: " + cartItems);
                 break;
+                
+                System.out.println("You have chosen: ");
+                for (Item cartItem : cartItems) {
+                    System.out.println(cartItem.getName());
+                }
+                
             }
         }
     }
