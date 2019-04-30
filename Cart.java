@@ -27,6 +27,7 @@ public class Cart
 
     public Order checkout() throws UnauthorizedException 
     {
+    	System.out.println("\nPlease Wait......redirecting to checkout");
         User user = Session.getInstance().getUser();
         Bank bank = new Bank();
         Boolean verified = bank.verifyCard(user.getCard(), getCartTotal());
@@ -37,7 +38,7 @@ public class Cart
         } 
         else // if everything is verified
         {
-        	System.out.println("Welcome to checkout");
+        	System.out.println("Thank you for shopping at OSS you have sucessfully checked out!");
             Order order = new Order(user.getId(), cartItems, getCartTotal());
             return order;
         }
@@ -78,6 +79,7 @@ public class Cart
                 for (Item cartItem : cartItems) {
                     System.out.println(cartItem.getName());
                 }
+                
                 break;
             }
         }
