@@ -62,6 +62,7 @@ public class Users
                 user = userList.getUserById(userId);
                 userList.authUser(user, pass);
                 System.out.println("Successfully logged in! Welcome to the OSS.");
+                session.setUser(user);
                 System.out.println("Which task would you like to do? \n1. logout \n2. shop \n3. checkout");
                 Integer choice = sc.nextInt();
                 switch (choice)
@@ -73,21 +74,27 @@ public class Users
                 	case 2:
                 		choiceSelected = "shop";
                 		session.getCart().addItemsToCart();
+                		try {
+                            session.getCart().checkout();
+                        } catch (UnauthorizedException e) {
+                        	System.out.println("Nothing is in your cart.");
+                        }
                 		break;
                 	case 3:
                 		choiceSelected = "checkout";
-                		//try 
-                		//{
-                			//session.getCart().checkout();
-                		//}
-                		// catch (UnauthorizedException e)
+                		try {
+                            session.getCart().checkout();
+                        } catch (UnauthorizedException e) {
+                        	System.out.println("Nothing is in your cart.");
+                        }
                 		break;
                 
                 }
             } 
             catch (NotFoundException e) 
             {
-                System.out.println("In user not found exception. ");
+                System.out.println("User not found. Please Try Again!");
+                doLogin();
                 // user not found do some looping or something here
             } 
             catch (BadPasswordException e) 
@@ -102,7 +109,7 @@ public class Users
             }
             if (user == null) 
             {
-                System.out.println("I don't know how you got here, but you deserve a gold star for the effort.");
+                System.out.println("You have successfully logged out. Please Come Again!");
             }
             session.setUser(user);
         } 
@@ -112,13 +119,14 @@ public class Users
             System.out.println("Enter a username: ");
             sc.nextLine();
             String newUsername = sc.nextLine();
-	    boolean usernameTaken = true;
+            boolean usernameTaken = true;
             while(usernameTaken) {
                 try {
                     getUserById(newUsername);
                     System.out.println("Username already exists. Enter in a different username: ");
                     newUsername = sc.nextLine();
-                } catch (NotFoundException e) {
+                } catch (NotFoundException e) 
+                {
                     usernameTaken = false;
                 }
             }
@@ -134,14 +142,14 @@ public class Users
             createUser(newUsername, newPassword, newPhoneWhoDis, newAddress, newCreditCard, newType);
             System.out.println("You have successfully created your account! Congrats! Now please proceed to login.");
             doLogin();       
-        }
+            }
 
     }
-    public void doLogout() {
+    public void doLogout() 
+    {
         session.setUser(null);
     }
     public void createUser(String newUsername, String newPassword, String newPhoneWhoDis, String newAddress, Integer newCreditCard, String newType)
     {
         Session.getInstance().getUserList().addUser(new User(newUsername, newPassword, newPhoneWhoDis, newAddress, newCreditCard, newType));
     }
-}
