@@ -5,15 +5,13 @@ customer cases:
 2. logout - done
 3. select items - done
 4. place order - done
-
 5. view order - should just need a listOrders and getOrder function
-
 supplier cases
 1. process order
 2. confirm
 3. inventory/stock tracking
 */
-
+package final_project;
 import java.util.Scanner;
 
 public class EntryPoint {
@@ -30,7 +28,7 @@ public class EntryPoint {
                 begin = false;
             } else if (custSup == 2) {
                 System.out.println("You have chosen Supplier. Welcome.");
-                session = Session.startSupplierSession();
+                session = Session.startSupplierSession(new Cart());
                 begin = false;
             } else {
                 System.out.println("Invalid input. Please try again.");
@@ -40,7 +38,7 @@ public class EntryPoint {
         String task = "";
         boolean taskChoice = true;
         while (taskChoice) {
-            System.out.println("Which task would you like to perform? \n1. login\n2. logout\n3. shop\n4. checkout");
+            System.out.println("Which task would you like to perform? \n1. login\n2. logout and exit\n3. shop");
             int pickTask = sc.nextInt();
             switch (pickTask) {
                 case 1:
@@ -48,15 +46,11 @@ public class EntryPoint {
                     taskChoice = false;
                     break;
                 case 2:
-                    task = "logout";
+                    task = "logout and exit";
                     taskChoice = false;
                     break;
                 case 3:
                     task = "shop";
-                    taskChoice = false;
-                    break;
-                case 4:
-                    task = "checkout";
                     taskChoice = false;
                     break;
                 default:
@@ -64,7 +58,7 @@ public class EntryPoint {
             }
         }
         //String task = "login";
-        System.out.println("Outside while loop with task.");
+       // System.out.println("Outside while loop with task.");
 
         if (session.getSessionType().equals("customer")) {
             System.out.println("In customer task.");
@@ -75,25 +69,25 @@ public class EntryPoint {
         }
     }
     public static void handleCustomer(String task) {
+    	//Scanner scan = new Scanner(System.in);
         switch (task) {
             case "login":
                 session.getUserList().doLogin();
                 break;
-            case "logout":
+            case "logout and exit":
                 session.getUserList().doLogout();
+                System.out.println("You have sucessfully logged out!");
                 break;
             case "shop":
+            	System.out.println("Here are our items available: ");
                 session.getCart().addItemsToCart();
-                break;
-            case "checkout":
                 try {
                     session.getCart().checkout();
                 } catch (UnauthorizedException e) {
-                    // prob wanna handle this
+                	System.out.println("Nothing is in your cart.");
                 }
+                
                 break;
-            default:
-                // no matching action
         }
     }
     public static void handleSupplier(String task) {
@@ -101,11 +95,13 @@ public class EntryPoint {
             case "login":
                 session.getUserList().doLogin();
                 break;
-            case "logout":
+            case "logout and exit":
                 session.getUserList().doLogout();
+                System.out.println("You have sucessfully logged out!");
                 break;
-            case "inventory":
-                //session.getInventory();
+            case "shop":
+            	System.out.println("Here are our inventory items available: \n");
+                session.getCart().addItemsToCart();;
                 break;
             case "orders":
                 //session.getOrders();
@@ -115,3 +111,4 @@ public class EntryPoint {
         }
     }
 }
+
