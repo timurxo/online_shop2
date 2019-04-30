@@ -1,12 +1,15 @@
 
+package final_project;
 public class Session {
 
     private static Session instance = null;
     private User user;
     private String sessionType;
     private Cart cart;
+    private Inventory inventory;
     private Users userList;
-    private Session(String session, Cart cartObject) {
+    private Session(String session, Cart cartObject) 
+    {
         sessionType = session;
         cart = cartObject;
         userList = new Users(this);
@@ -18,8 +21,8 @@ public class Session {
         return instance;
     }
 
-    public static Session startSupplierSession() {
-        instance = new Session("supplier", null);
+    public static Session startSupplierSession(Cart cartObject) {
+        instance = new Session("supplier", cartObject);
         return instance;
     }
 
@@ -34,6 +37,11 @@ public class Session {
     }
     public Cart getCart() {
         return cart;
+    }
+    
+    public Inventory getInventory()
+    {
+    	return inventory;
     }
 
     public String getSessionType() {
